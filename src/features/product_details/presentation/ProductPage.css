@@ -1,0 +1,33 @@
+.ProductInfo.Body{
+
+}
+
+.ProductInfo.CategoryRoute{
+    margin: 30px 0;
+    text-align: left;
+}
+
+.ProductInfo.MainContainer{
+    display: flex;
+}
+
+.ProductInfo.Photos{
+    flex-grow: 10;
+    background: burlywood;
+}
+
+.ProductInfo.PhotosRow{
+    display: flex;
+}
+
+.ProductInfo.ProductPhoto{
+    flex-grow: 1;
+    height: 400px;
+    background: darkgray;
+    margin: 3px;
+}
+
+.ProductInfo.ProductData{
+    flex-grow: 6;
+    background: navy;
+}
