@@ -1,4 +1,4 @@
-import {Route, Navigate, Routes, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {base64decode} from "../../domain/encode-decode/base64EncodeDecode";
 import confirmRegistration from "../../domain/use_case/confirmRegistration";
 import React from "react";
