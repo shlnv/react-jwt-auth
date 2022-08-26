@@ -1,38 +1,148 @@
-.App {
+body {
+  font-family: Inter, Medium, sans-serif;
+  background: #F9F9F9;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container-1 {
+  padding: 20px;
+  text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container-1 > * {
+  padding: 10px 10px 0 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.box {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  background: #FFFFFF;
+  border-radius: 10px;
+  border: #F9F9F9;
 }
 
-.App-link {
-  color: #61dafb;
+.box-signin {
+  margin-top: 215px;
+  width: 410px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.box-signup {
+  margin-top: 215px;
+  width: 410px;
+}
+
+.box-recovery {
+  margin-top: 342px;
+  width: 410px;
+}
+
+.box-newp {
+  margin-top: 215px;
+  width: 410px;
+}
+
+.container-2 {
+  padding: 25px 30px 0 30px;
+}
+
+.h-2 {
+  display: inline;
+  font-size: 28px;
+  /*margin-top: auto;*/
+  /*margin-bottom: auto;*/
+}
+
+.text-small-grey {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.text-small-black {
+  font-size: 13px;
+  color: black;
+}
+
+.text-small-link {
+  font-size: 13px;
+  color: #2D74FF;
+  text-decoration: none;
+}
+
+.text-small-link:hover {
+  text-decoration: underline;
+}
+
+.black-bold-link {
+  font-weight: bold;
+  color: black;
+
+}
+
+.black-bold-link:link {
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+}
+
+.black-bold-link:visited {
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+}
+
+.black-bold-link:hover {
+  font-weight: bold;
+  color: black;
+  text-decoration: underline;
+}
+
+.align-right {
+  display: inline;
+  float: right;
+  margin-top: 0.5em;
+}
+
+.form-input {
+  display: inline;
+  padding-left: 18px;
+  border-radius: 10px;
+  border: 1px solid #0000001A;
+  font-size: 18px;
+  width: 332px;
+  height: 50px;
+}
+
+.form-input::placeholder {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.eye {
+  display: inline;
+  position: relative;
+  z-index: 100;
+  float: right;
+  top: -33px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.btn-wide {
+  position: relative;
+  width: 350px;
+  height: 50px;
+  border-radius: 10px;
+  background: #2D74FF;
+  font-size: 18px;
+  color: #FFFFFF;
+  border: #2D74FF;
+  cursor: pointer;
+}
+
+.btn-wide:hover {
+  background: #2b89fe;
+}
+
+.btn-wide:active {
+  top: 2px
 }

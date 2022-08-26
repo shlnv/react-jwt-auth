@@ -1,4 +1,4 @@
-import {useNavigate} from "react-router-dom";
+import {Route, Navigate, Routes, useNavigate} from "react-router-dom";
 import {base64decode} from "../../domain/encode-decode/base64EncodeDecode";
 import confirmRegistration from "../../domain/use_case/confirmRegistration";
 import React from "react";
@@ -20,7 +20,6 @@ const AuthRedirectComponent: React.FC = () => {
     }
 
     token = getTokenFromUrl();
-
 
     if (token) {
         decodedToken = base64decode(token);

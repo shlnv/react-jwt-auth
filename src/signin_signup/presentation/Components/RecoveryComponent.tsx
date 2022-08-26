@@ -8,11 +8,15 @@ const RecoveryComponent: React.FC = () => {
     const navigate = useNavigate();
 
     const onSubmit = async (e: any) => {
-        const res = await recoveryUser(e.login)
-            .catch(error => alert(error.message));
-        if (res) {
-            alert('Please check your email!');
-            navigate('/main/signin');
+        if (e.login) {
+            const res = await recoveryUser(e.login)
+                .catch(error => alert(error.message));
+            if (res) {
+                alert('Please check your email!');
+                navigate('/main/signin');
+            } else {
+                alert('There is now user with current email address')
+            }
         }
     };
 
@@ -26,17 +30,24 @@ const RecoveryComponent: React.FC = () => {
 
             render={({handleSubmit}) => (
                 <form onSubmit={handleSubmit}>
-                    <h2>Restore password</h2> <Link to="/main/signin">Sign in</Link>
-                    <Field name="login">
-                        {({input, meta}) => (
-                            <div>
-                                <input type="email" {...input} placeholder="Your email"/>
-                                {meta.touched && meta.error && <div>{meta.error}</div>}
-                            </div>
-                        )}
-                    </Field>
-
-                    <button type="submit">Send</button>
+                    <div className="box box-recovery">
+                        <div className="container-2">
+                            <h2 className="h-2">Restore password</h2><p className="align-right"><Link
+                            className="text-small-link" to="/main/signin">Sign in</Link></p>
+                        </div>
+                        <div className="container-1">
+                            <Field name="login">
+                                {({input, meta}) => (
+                                    <div>
+                                        <input className="form-input" type="email" {...input} placeholder="Your email"/>
+                                        {meta.touched && meta.error && <div>{meta.error}</div>}
+                                    </div>
+                                )}
+                            </Field>
+                            <br/>
+                            <button className="btn-wide" type="submit">Send</button>
+                        </div>
+                    </div>
                 </form>
             )}
         />
