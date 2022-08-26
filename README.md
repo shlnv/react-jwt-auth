@@ -1,1 +1,1 @@
-# React Typescript JWT authorization clean architecture application
+# React Typescript JWT authorization on clean architecture
