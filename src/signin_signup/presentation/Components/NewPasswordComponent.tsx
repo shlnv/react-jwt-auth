@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useRef, useEffect, RefObject} from "react";
 import {Form, Field} from 'react-final-form';
 import validatePassword from "../../domain/utils/validatePassword";
 import {base64decode} from "../../domain/encode-decode/base64EncodeDecode";
@@ -9,19 +9,12 @@ import hidePasswordIcon from "../../../icons/hidepswd.png";
 
 const NewPasswordComponent: React.FC = () => {
     const navigate = useNavigate();
-    let token: string | null;
-    let login: string | null;
-    let decodedToken: string | null;
-    let passInput: any;
-    let confInput: any;
-
-    useEffect(() => {
-        passInput = document.getElementById('passInput');
-        confInput = document.getElementById('confInput')
-    })
+    const passInput: RefObject<any> = useRef();
+    const confInput: RefObject<any> = useRef();
+    let login: string;
+    let decodedToken: string;
 
     const onSubmit = async (e: any) => {
-        // @ts-ignore
         const res = await newPassword(login, e.password)
             .catch(e => alert(e.message));
         if (res) {
@@ -47,20 +40,22 @@ const NewPasswordComponent: React.FC = () => {
     }
 
     const showHidePassword = () => {
-        if (passInput.type === 'password')
-            passInput.type = 'text';
-        else
-            passInput.type = 'password'
+        if (passInput.current.type === 'password') {
+            passInput.current.type = 'text';
+        } else {
+            passInput.current.type = 'password'
+        }
     };
 
     const showHideConfirm = () => {
-        if (confInput.type === 'password')
-            confInput.type = 'text';
+        if (confInput.current.type === 'password')
+            confInput.current.type = 'text';
         else
-            confInput.type = 'password'
+            confInput.current.type = 'password'
     };
 
-    token = getTokenFromUrl();
+    const token: string | null = getTokenFromUrl();
+
     if (token) {
         try {
             decodedToken = base64decode(token);
@@ -83,7 +78,8 @@ const NewPasswordComponent: React.FC = () => {
                                 <Field name="password">
                                     {({input, meta}) => (
                                         <div>
-                                            <input id="passInput" className="form-input" type="password" {...input}
+                                            <input ref={passInput} id="passInput" className="form-input"
+                                                   type="password" {...input}
                                                    placeholder="Password"/>
                                             <img width="16.67px" height="13.33px" src={hidePasswordIcon} alt="show"
                                                  className="eye" onClick={showHidePassword}/>
@@ -95,9 +91,10 @@ const NewPasswordComponent: React.FC = () => {
                                 <Field name="confirm">
                                     {({input, meta}) => (
                                         <div>
-                                            <input id="confInput" className="form-input" type="password" {...input}
+                                            <input ref={confInput} id="confInput" className="form-input"
+                                                   type="password" {...input}
                                                    placeholder="Confirm password"/>
-                                            <img width="16.67px" height="13.33px" src={hidePasswordIcon} alt="show"
+                                            <img src={hidePasswordIcon} alt="show"
                                                  className="eye" onClick={showHideConfirm}/>
                                             {meta.touched && meta.error && <div>{meta.error}</div>}
                                         </div>

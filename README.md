@@ -1,8 +1,8 @@
-# React Typescript JWT authorization on clean architecture and mock mirage.js API
+# React Typescript JWT authorization with mock mirage.js API
 
 This is my implementation of Json Web Token authorisation that writes token to session storage.
-Mock API has functions that creates JWT using crypto.js and decrypt it to check user's role and expiration date.
+Mock API has the function that creates JWT using crypto.js and decrypt it to check user's role and expiration date.
 
-mirage.js allows to connect to server very quickly, without big changes of code.
+mirage.js allows to replace the mock API with a real one very quickly, without big changes of code.
 
-For validating and processing forms, I used react final form.
+For validating and processing forms I used React final form.

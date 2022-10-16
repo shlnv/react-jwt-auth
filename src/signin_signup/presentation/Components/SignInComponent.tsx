@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {RefObject, useEffect, useRef} from 'react';
 import {Form, Field} from 'react-final-form';
 import '../../data/api/fakeAPI';
 import {Link, useNavigate} from "react-router-dom";
@@ -9,11 +9,7 @@ import hidePasswordIcon from "../../../icons/hidepswd.png";
 const SignInComponent: React.FC = () => {
 
     const navigate = useNavigate();
-    let passInput: any
-
-    useEffect(() => {
-        passInput = document.getElementById('passInput')
-    })
+    const passInput: RefObject<any> = useRef();
 
     const onSubmit = async (e: any) => {
         if (e.login && e.password) {
@@ -25,21 +21,16 @@ const SignInComponent: React.FC = () => {
         }
     };
 
-    const validate = (): any => {
-        return;
-    };
-
     const showHidePassword = () => {
-        if (passInput.type === 'password')
-            passInput.type = 'text';
+        if (passInput.current.type === 'password')
+            passInput.current.type = 'text';
         else
-            passInput.type = 'password'
+            passInput.current.type = 'password'
     };
 
     return (
         <Form
             onSubmit={onSubmit}
-            validate={validate}
 
             render={({handleSubmit}) => (
                 <form onSubmit={handleSubmit}>
@@ -63,9 +54,10 @@ const SignInComponent: React.FC = () => {
                             <Field name="password">
                                 {({input, meta}) => (
                                     <div>
-                                        <input id="passInput" className="form-input" type="password" {...input}
+                                        <input ref={passInput} id="passInput" className="form-input"
+                                               type="password" {...input}
                                                placeholder="Password"/>
-                                        <img width="16.67px" height="13.33px" src={hidePasswordIcon} alt="show"
+                                        <img src={hidePasswordIcon} alt="show"
                                              className="eye" onClick={showHidePassword}/>
                                         {meta.touched && meta.error && <div>{meta.error}</div>}
                                     </div>

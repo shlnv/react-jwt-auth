@@ -20,13 +20,8 @@ const RecoveryComponent: React.FC = () => {
         }
     };
 
-    const validate = (): any => {
-        return;
-    };
-
     return (<Form
             onSubmit={onSubmit}
-            validate={validate}
 
             render={({handleSubmit}) => (
                 <form onSubmit={handleSubmit}>

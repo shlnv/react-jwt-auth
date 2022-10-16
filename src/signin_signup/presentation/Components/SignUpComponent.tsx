@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {RefObject, useEffect, useRef, useState} from 'react';
 import {Form, Field} from 'react-final-form';
 import {Link, useNavigate} from "react-router-dom";
 import validatePassword from "../../domain/utils/validatePassword";
@@ -9,14 +9,9 @@ import hidePasswordIcon from "../../../icons/hidepswd.png";
 
 const SignUpComponent: React.FC = () => {
 
-    const navigate = useNavigate()
-    let passInput: any
-    let confInput: any
-
-    useEffect(() => {
-        passInput = document.getElementById('passInput');
-        confInput = document.getElementById('confInput')
-    })
+    const navigate = useNavigate();
+    const passInput: RefObject<any> = useRef();
+    const confInput: RefObject<any> = useRef();
 
     const onSubmit = async (e: any) => {
         if (e.login && e.password && e.name && e.confirm) {
@@ -43,17 +38,17 @@ const SignUpComponent: React.FC = () => {
     };
 
     const showHidePassword = () => {
-        if (passInput.type === 'password')
-            passInput.type = 'text';
+        if (passInput.current.type === 'password')
+            passInput.current.type = 'text';
         else
-            passInput.type = 'password'
+            passInput.current.type = 'password'
     };
 
     const showHideConfirm = () => {
-        if (confInput.type === 'password')
-            confInput.type = 'text';
+        if (confInput.current.type === 'password')
+            confInput.current.type = 'text';
         else
-            confInput.type = 'password'
+            confInput.current.type = 'password'
     };
 
     return (
@@ -91,9 +86,10 @@ const SignUpComponent: React.FC = () => {
                             <Field name="password">
                                 {({input, meta}) => (
                                     <div>
-                                        <input className="form-input" id="passInput" type="password" {...input}
+                                        <input ref={passInput} className="form-input" id="passInput"
+                                               type="password" {...input}
                                                placeholder="Password"/>
-                                        <img width="16.67px" height="13.33px" src={hidePasswordIcon} alt="show"
+                                        <img src={hidePasswordIcon} alt="show"
                                              className="eye" onClick={showHidePassword}/>
                                         {meta.touched && meta.error && <div>{meta.error}</div>}
                                     </div>
@@ -103,7 +99,8 @@ const SignUpComponent: React.FC = () => {
                             <Field name="confirm">
                                 {({input, meta}) => (
                                     <div>
-                                        <input className="form-input" id="confInput" type="password" {...input}
+                                        <input ref={confInput} className="form-input" id="confInput"
+                                               type="password" {...input}
                                                placeholder="Confirm password"/>
                                         <img width="16.67px" height="13.33px" src={hidePasswordIcon} alt="show"
                                              className="eye" onClick={showHideConfirm}/>
